@@ -27,4 +27,7 @@ source $ZSH/oh-my-zsh.sh
 alias s="supervisorctl"
 alias sr="supervisorctl restart"
 alias st="supervisorctl tail -f"
+alias ss="supervisorctl shutdown"
 alias sd="supervisord"
+
+alias max="cd mixmax/mixmax-runner && supervisord && sudo npm start"
