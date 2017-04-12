@@ -49,8 +49,23 @@ set backspace=indent,eol,start
 set showbreak=...
 set wrap linebreak nolist
 
-" Automatic line break at 100 characters
-set tw=100
+" Automatic line break at 100 characters in most filetypes.
+fun! SetTextWidth()
+  " Don't set text width on markdown or html files.
+  if &ft =~ 'markdown\|html'
+    " Strangely, if this block is left blank, Vim will use the settings from the `else` case.
+    set tw=0
+    set colorcolumn=0
+  else
+    " Set text width.
+    set tw=100
+
+    " Highlight column 100 to mark max line length
+    set colorcolumn=100
+  endif
+endfun
+
+autocmd BufRead * call SetTextWidth()
 
 " Searching
 set hlsearch
@@ -129,9 +144,6 @@ map <C-l> <C-W>l
 
 " No wrapping
 set nowrap
-
-" Highlight column 100 to mark max line length
-set colorcolumn=100
 
 " Map <leader>s to Silver Surfer
 nmap <leader>s :Ack!<Space>
