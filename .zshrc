@@ -31,3 +31,7 @@ alias ss="supervisorctl shutdown"
 alias sd="supervisord"
 
 alias max="cd ~/mixmax/mixmax-runner && supervisord && sudo npm start"
+
+# "On an ambiguous completion, instead of listing possibilities or beeping, insert the first match
+# immediately."
+setopt menu_complete
