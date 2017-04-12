@@ -34,7 +34,6 @@ let mapleader=","
 
 set number
 set ruler
-autocmd BufNewFile,BufRead *._js set filetype=javascript
 
 set smartindent
 set autoindent
