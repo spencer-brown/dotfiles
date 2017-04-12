@@ -30,4 +30,4 @@ alias st="supervisorctl tail -f"
 alias ss="supervisorctl shutdown"
 alias sd="supervisord"
 
-alias max="cd mixmax/mixmax-runner && supervisord && sudo npm start"
+alias max="cd ~/mixmax/mixmax-runner && supervisord && sudo npm start"
