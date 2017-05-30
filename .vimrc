@@ -39,7 +39,6 @@ set smartindent
 set autoindent
 
 " Whitespace
-set nowrap
 set tabstop=2 shiftwidth=2
 set expandtab " Spaces instead of tabs
 set smarttab
@@ -47,7 +46,7 @@ set backspace=indent,eol,start
 
 " Wrapping
 set showbreak=...
-set wrap linebreak nolist
+set linebreak nolist
 
 " Automatic line break at 100 characters in most filetypes.
 fun! SetTextWidth()
