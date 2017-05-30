@@ -1,6 +1,10 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+# Update path.
+# - Include pip-installed libs.
+export PATH=$PATH:$HOME/Library/Python/2.7/bin:$HOME/elasticsearch/bin
+
 # Set name of the theme to load.
 ZSH_THEME="spencer"
 
