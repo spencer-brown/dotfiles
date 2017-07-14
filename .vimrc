@@ -175,3 +175,13 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" Use ESLint or JSHint depending on the project.
+autocmd FileType javascript let b:syntastic_checkers = findfile('.eslintrc.json', '.;') != '' ? ['eslint'] : ['jshint']
+
+" Use projects' local versions of ESLint so that I don't need to install configs, plugins globally
+" and the version of ESLint is project-specific.
+let g:syntastic_javascript_eslint_exe='$(yarn bin)/eslint'
+
+" Enable JSDoc syntax highlighting for pangloss's javascript syntax plugin.
+let g:javascript_plugin_jsdoc = 1
