@@ -41,3 +41,6 @@ alias elasticsearch="~/elasticsearch/bin/elasticsearch"
 # "On an ambiguous completion, instead of listing possibilities or beeping, insert the first match
 # immediately."
 setopt menu_complete
+
+# added by travis gem
+[ -f /Users/spencer/.travis/travis.sh ] && source /Users/spencer/.travis/travis.sh
