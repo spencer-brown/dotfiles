@@ -38,6 +38,9 @@ alias max="cd ~/mixmax/mixmax-runner && supervisord && sudo yarn start"
 
 alias elasticsearch="~/elasticsearch/bin/elasticsearch"
 
+# Delete merged branches.
+alias gbclean="git branch --merged | egrep -v \"(^\*|master)\" | xargs git branch -d"
+
 # "On an ambiguous completion, instead of listing possibilities or beeping, insert the first match
 # immediately."
 setopt menu_complete
