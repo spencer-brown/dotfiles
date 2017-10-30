@@ -178,7 +178,7 @@ autocmd FileType javascript let b:syntastic_checkers = findfile('.eslintrc.json'
 
 " Use projects' local versions of ESLint so that I don't need to install configs, plugins globally
 " and the version of ESLint is project-specific.
-let g:syntastic_javascript_eslint_exe='$(yarn bin)/eslint'
+let g:syntastic_javascript_eslint_exec='node_modules/.bin/eslint'
 
 " Enable JSDoc syntax highlighting for pangloss's javascript syntax plugin.
 let g:javascript_plugin_jsdoc = 1
