@@ -178,7 +178,7 @@ map <C-i> :redr!<CR>
 " Get tern docs easily.
 map <leader>d :YcmCompleter GetDoc<CR>
 
- Jump to definition, even into node_modules.
+" Jump to definition, even into node_modules.
 map <leader>g :YcmCompleter GoTo<CR>
 
 " ALE config
