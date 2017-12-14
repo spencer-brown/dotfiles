@@ -41,6 +41,9 @@ alias elasticsearch="~/elasticsearch/bin/elasticsearch"
 # Delete merged branches.
 alias gbclean="git branch --merged | egrep -v \"(^\*|master)\" | xargs git branch -d"
 
+# Short for "re-yarn" - reinstall node modules.
+alias rey="rm -rf node_modules && yarn"
+
 # "On an ambiguous completion, instead of listing possibilities or beeping, insert the first match
 # immediately."
 setopt menu_complete
