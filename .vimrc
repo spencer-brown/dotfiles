@@ -14,18 +14,22 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'mileszs/ack.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'vim-syntastic/syntastic'
+Plugin 'w0rp/ale'
 Plugin 'altercation/vim-colors-solarized'
+
+" It seems that a bit of lagginess is introduced in the packages in this block, but I'll leave
+" further investigation for another day.
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'moll/vim-node'
 Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tonchis/vim-to-github'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+
+" vim-airline seems to slow Vim down significantly.
+" Plugin 'vim-airline/vim-airline'
+" Plugin 'vim-airline/vim-airline-themes'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -97,7 +101,7 @@ set so=7
 " A buffer becomes hidden when it is abandoned
 set hid
 
-" Don't redraw while executing macros
+" Don't redraw while executing macros. I've observed extreme lage when disabling this.
 set lazyredraw
 
 " Show matching brackets when text indicator is over them
@@ -120,19 +124,18 @@ set viminfo^=%
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
-" Relative line numbering
-set number " Show current line number
-set relativenumber " Show relative line numbers
+" Relative line numbering. These settings cause vim to become very slow when scrolling.
+"set number " Show current line number
+"set relativenumber " Show relative line numbers
 
 " Quicker mappings for CtrlP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
-" Only check with JSHint when writing
-let JSHintUpdateWriteOnly=1
-
 " Exclude certain filepaths for ctrlp searching
-set wildignore+=node_modules/*
+let g:ctrlp_custom_ignore = {
+  \'dir': '\.git$\|build\|node_modules'
+  \ }
 
 " Use <ctrl>+j/k/h/l to switch panes
 map <C-j> <C-W>j
@@ -165,21 +168,20 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-" Default syntastic settings. Worth looking into further... "It is
-" recommended that you start by adding the following lines to your vimrc file,
-" and return to them after reading the manual (see :help syntastic in Vim)"
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-" Use ESLint or JSHint depending on the project.
-autocmd FileType javascript let b:syntastic_checkers = findfile('.eslintrc.json', '.;') != '' ? ['eslint'] : ['jshint']
-
-" Use projects' local versions of ESLint so that I don't need to install configs, plugins globally
-" and the version of ESLint is project-specific.
-let g:syntastic_javascript_eslint_exe='$(yarn bin)/eslint'
-
 " Enable JSDoc syntax highlighting for pangloss's javascript syntax plugin.
 let g:javascript_plugin_jsdoc = 1
+
+" Map a shortcut for "redraw!" because some buggy plugin I use messes up the the screen, requiring
+" me to redraw.
+map <C-i> :redr!<CR>
+
+" Get tern docs easily.
+map <leader>d :YcmCompleter GetDoc<CR>
+
+" Jump to definition, even into node_modules.
+map <leader>g :YcmCompleter GoTo<CR>
+
+" ALE config
+let g:ale_linters = {
+\ 'javascript': ['eslint']
+\}
