@@ -85,9 +85,7 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " Solarized
 syntax enable
-let g:solarized_termtrans=1
 set background=dark
-let g:solarized_termcolors=16
 colorscheme solarized
 
 " Fast saving and quitting
