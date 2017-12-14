@@ -1,9 +1,6 @@
 # Grab the current date (%W) and time (%t):
 SPENCER_TIME_="%{$fg[white]%}%{$fg[yellow]%}%t%{$reset_color%}"
 
-# Grab the current machine name 
-# SPENCER_MACHINE_="%{$fg[blue]%}%m%{$fg[white]%}] %{$reset_color%}"
-
 # Grab the current username 
 SPENCER_CURRENT_USER_=" %{$fg[blue]%}[%n]%{$reset_color%}"
 

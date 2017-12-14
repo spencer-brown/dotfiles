@@ -22,10 +22,10 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'Raimondi/delimitMate'
-Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-commentary'
 Plugin 'tonchis/vim-to-github'
 Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
+Plugin 'MaxMEllon/vim-jsx-pretty'
 
 " vim-airline seems to slow Vim down significantly.
 " Plugin 'vim-airline/vim-airline'
@@ -178,7 +178,7 @@ map <C-i> :redr!<CR>
 " Get tern docs easily.
 map <leader>d :YcmCompleter GetDoc<CR>
 
-" Jump to definition, even into node_modules.
+ Jump to definition, even into node_modules.
 map <leader>g :YcmCompleter GoTo<CR>
 
 " ALE config
