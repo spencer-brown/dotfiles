@@ -17,6 +17,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'w0rp/ale'
 Plugin 'altercation/vim-colors-solarized'
 
+Plugin 'flowtype/vim-flow'
+
 " It seems that a bit of lagginess is introduced in the packages in this block, but I'll leave
 " further investigation for another day.
 Plugin 'tpope/vim-fugitive'
@@ -171,6 +173,9 @@ endif
 " Enable JSDoc syntax highlighting for pangloss's javascript syntax plugin.
 let g:javascript_plugin_jsdoc = 1
 
+" Enable Flow syntax highlighting.
+let g:javascript_plugin_flow = 1
+
 " Map a shortcut for "redraw!" because some buggy plugin I use messes up the the screen, requiring
 " me to redraw.
 map <C-i> :redr!<CR>
@@ -185,3 +190,6 @@ map <leader>g :YcmCompleter GoTo<CR>
 let g:ale_linters = {
 \ 'javascript': ['eslint']
 \}
+
+" Use project-local vim-flow
+let g:flow#flowpath = 'node_modules/.bin/flow'
