@@ -16,8 +16,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'w0rp/ale'
 Plugin 'altercation/vim-colors-solarized'
-
-Plugin 'flowtype/vim-flow'
+Plugin 'prettier/vim-prettier'
 
 " It seems that a bit of lagginess is introduced in the packages in this block, but I'll leave
 " further investigation for another day.
@@ -193,3 +192,7 @@ let g:ale_linters = {
 
 " Use project-local vim-flow
 let g:flow#flowpath = 'node_modules/.bin/flow'
+
+" Don't require the `@format` doc tag for Prettier to auto-run.
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html PrettierAsync

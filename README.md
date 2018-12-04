@@ -14,3 +14,4 @@ A collection of my configuration files.
 * `./install.sh` (creates symlinks mapping to the files in this directory)
 * [in vim] `:PluginInstall`
 * Follow the installation instructions for [`YouCompleteMe`](https://github.com/Valloric/YouCompleteMe)
+* Install Node dependencies in `vim-prettier`'s bundle directory [per its instructions](https://github.com/prettier/vim-prettier#install)
