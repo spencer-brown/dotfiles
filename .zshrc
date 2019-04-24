@@ -28,15 +28,6 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-alias s="supervisorctl"
-alias sr="supervisorctl restart"
-alias st="supervisorctl tail -f"
-alias ss="supervisorctl shutdown"
-alias sd="supervisord"
-
-alias max="cd ~/mixmax/mixmax-runner && supervisord && sudo yarn start"
-
-alias elasticsearch="~/elasticsearch/bin/elasticsearch"
 
 # Delete merged branches.
 alias gbclean="git branch --merged | egrep -v \"(^\*|master)\" | xargs git branch -d"
