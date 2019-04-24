@@ -17,6 +17,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'w0rp/ale'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'prettier/vim-prettier'
+Plugin 'jparise/vim-graphql'
+Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
 
 " It seems that a bit of lagginess is introduced in the packages in this block, but I'll leave
 " further investigation for another day.
@@ -183,8 +185,17 @@ map <leader>g :YcmCompleter GoTo<CR>
 
 " ALE config
 let g:ale_linters = {
-\ 'javascript': ['eslint']
+\ 'javascript': ['eslint'],
+\ 'graphql': ['prettier'],
+\ 'python': ['pylint']
 \}
+
+let g:ale_fixers = {
+\ 'python': ['yapf'],
+\}
+
+" Run `yapf` on save.
+let g:ale_fix_on_save = 1
 
 " Use project-local vim-flow
 let g:flow#flowpath = 'node_modules/.bin/flow'
