@@ -175,10 +175,6 @@ let g:javascript_plugin_jsdoc = 1
 " Enable Flow syntax highlighting.
 let g:javascript_plugin_flow = 1
 
-" Map a shortcut for "redraw!" because some buggy plugin I use messes up the the screen, requiring
-" me to redraw.
-map <C-i> :redr!<CR>
-
 " Get tern docs easily.
 map <leader>d :YcmCompleter GetDoc<CR>
 
