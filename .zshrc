@@ -35,6 +35,9 @@ alias gbclean="git branch --merged | egrep -v \"(^\*|master)\" | xargs git branc
 # Short for "re-yarn" - reinstall node modules.
 alias rey="rm -rf node_modules && yarn"
 
+# Remove unused docker images.
+alias drmd="docker rmi `docker images -f dangling=true -q`"
+
 # "On an ambiguous completion, instead of listing possibilities or beeping, insert the first match
 # immediately."
 setopt menu_complete
