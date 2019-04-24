@@ -42,5 +42,9 @@ alias drmd="docker rmi `docker images -f dangling=true -q`"
 # immediately."
 setopt menu_complete
 
-# added by travis gem
-[ -f /Users/spencer/.travis/travis.sh ] && source /Users/spencer/.travis/travis.sh
+# For System1 config
+source ~/.system1
+
+# nvm config brew brew-based installation
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
