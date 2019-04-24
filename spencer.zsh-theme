@@ -17,7 +17,7 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 # Do nothing if the branch is clean (no changes).
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
-# Add a red ✗ if this branch is diiirrrty! Dirty branch!
+# Add mark if branch is dirty.
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}*%{$reset_color%}"
 
 # Put it all together!
