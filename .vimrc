@@ -187,7 +187,7 @@ map <leader>g :YcmCompleter GoTo<CR>
 let g:ale_linters = {
 \ 'javascript': ['eslint'],
 \ 'graphql': ['prettier'],
-\ 'python': ['pylint']
+\ 'python': ['flake8']
 \}
 
 let g:ale_fixers = {
