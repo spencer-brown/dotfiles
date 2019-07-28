@@ -3,7 +3,9 @@ export ZSH=$HOME/.oh-my-zsh
 
 # Update path.
 # - Include pip-installed libs.
-export PATH=$PATH:$HOME/Library/Python/2.7/bin
+export PATH=$PATH:$HOME/Library/Python/2.7/bin:$HOME/.poetry/bin
+
+export PYTHONPATH=$PYTHONPATH:~/system1/workcell/greenbuttongo/lib
 
 # Set name of the theme to load.
 ZSH_THEME="spencer"
