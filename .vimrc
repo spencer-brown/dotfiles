@@ -19,6 +19,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'prettier/vim-prettier'
 Plugin 'jparise/vim-graphql'
 Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
+Bundle 'OmniSharp/omnisharp-vim'
 
 " It seems that a bit of lagginess is introduced in the packages in this block, but I'll leave
 " further investigation for another day.
@@ -187,7 +188,8 @@ map <leader>g :YcmCompleter GoTo<CR>
 let g:ale_linters = {
 \ 'javascript': ['eslint'],
 \ 'graphql': ['prettier'],
-\ 'python': ['flake8']
+\ 'python': ['flake8'],
+\ 'cs': ['OmniSharp']
 \}
 
 let g:ale_fixers = {
