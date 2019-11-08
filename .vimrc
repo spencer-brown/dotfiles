@@ -20,6 +20,7 @@ Plugin 'prettier/vim-prettier'
 Plugin 'jparise/vim-graphql'
 Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
 Bundle 'OmniSharp/omnisharp-vim'
+Plugin 'PProvost/vim-ps1'
 
 " It seems that a bit of lagginess is introduced in the packages in this block, but I'll leave
 " further investigation for another day.
