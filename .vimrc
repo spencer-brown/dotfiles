@@ -190,7 +190,8 @@ let g:ale_linters = {
 \ 'javascript': ['eslint'],
 \ 'graphql': ['prettier'],
 \ 'python': ['flake8'],
-\ 'cs': ['OmniSharp']
+\ 'cs': ['OmniSharp'],
+\ 'puppet': ['puppetlint']
 \}
 
 let g:ale_fixers = {
