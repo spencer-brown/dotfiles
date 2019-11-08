@@ -50,3 +50,11 @@ source ~/.system1
 # nvm config brew brew-based installation
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
+
+# For pyenv
+eval "$(pyenv init -)"
+# Also for pyenv, per seemingly necessary workaround from
+# https://github.com/pyenv/pyenv/issues/1066#issuecomment-531510186. `pyenv install` breaks without
+# this (after running all of the recommended instructions from
+# https://github.com/pyenv/pyenv/wiki#suggested-build-environment for OSX).
+export SDKROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk
