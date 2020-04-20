@@ -21,9 +21,6 @@ Plugin 'jparise/vim-graphql'
 Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
 Bundle 'OmniSharp/omnisharp-vim'
 Plugin 'PProvost/vim-ps1'
-
-" It seems that a bit of lagginess is introduced in the packages in this block, but I'll leave
-" further investigation for another day.
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'Raimondi/delimitMate'
@@ -31,10 +28,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tonchis/vim-to-github'
 Plugin 'pangloss/vim-javascript'
 Plugin 'MaxMEllon/vim-jsx-pretty'
-
-" vim-airline seems to slow Vim down significantly.
-" Plugin 'vim-airline/vim-airline'
-" Plugin 'vim-airline/vim-airline-themes'
+Plugin 'alvan/vim-closetag'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -94,7 +88,7 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " Solarized
 syntax enable
-set background=dark
+set background=light
 colorscheme solarized
 
 " Fast saving and quitting
@@ -195,7 +189,7 @@ let g:ale_linters = {
 \}
 
 let g:ale_fixers = {
-\ 'python': ['yapf'],
+\ 'python': ['black'],
 \}
 
 " Run `yapf` on save.
@@ -207,3 +201,11 @@ let g:flow#flowpath = 'node_modules/.bin/flow'
 " Don't require the `@format` doc tag for Prettier to auto-run.
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html PrettierAsync
+
+" closetag config
+let g:closetag_filenames = '*.html,*.js,*.jsx'
+let g:closetag_xhtml_filenames = '*.html,*.js,*.jsx'
+let g:closetag_regions = {
+  \ 'javascript.js': 'jsxRegion',
+  \ 'javascript.jsx': 'jsxRegion',
+  \ }

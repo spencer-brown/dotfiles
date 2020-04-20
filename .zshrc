@@ -5,8 +5,6 @@ export ZSH=$HOME/.oh-my-zsh
 # - Include pip-installed libs.
 export PATH=$PATH:$HOME/Library/Python/2.7/bin:$HOME/.poetry/bin
 
-export PYTHONPATH=$PYTHONPATH:~/system1/workcell/greenbuttongo/lib
-
 # Set name of the theme to load.
 ZSH_THEME="spencer"
 
@@ -43,9 +41,6 @@ alias gach='ga $(git ls-files -m)'
 # "On an ambiguous completion, instead of listing possibilities or beeping, insert the first match
 # immediately."
 setopt menu_complete
-
-# For System1 config
-source ~/.system1
 
 # nvm config brew brew-based installation
 export NVM_DIR="$HOME/.nvm"
