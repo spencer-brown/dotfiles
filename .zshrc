@@ -1,10 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# Update path.
-# - Include pip-installed libs.
-export PATH=$PATH:$HOME/Library/Python/2.7/bin:$HOME/.poetry/bin
-
 # Set name of the theme to load.
 ZSH_THEME="spencer"
 
@@ -32,8 +28,14 @@ source $ZSH/oh-my-zsh.sh
 # Delete merged branches.
 alias gbclean="git branch --merged | egrep -v \"(^\*|master)\" | xargs git branch -d"
 
+# Add a build-triggering commit.
+alias gctb='git commit --allow-empty -m "Trigger Build"'
+
 # Short for "re-yarn" - reinstall node modules.
 alias rey="rm -rf node_modules && yarn"
+alias ren="rm -rf node_modules && npm i"
+
+alias ns="npm start"
 
 # "Git-add checked in"
 alias gach='ga $(git ls-files -m)'
@@ -44,7 +46,8 @@ setopt menu_complete
 
 # nvm config brew brew-based installation
 export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # For pyenv
 eval "$(pyenv init -)"

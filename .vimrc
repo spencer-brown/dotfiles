@@ -10,25 +10,24 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " My plugins
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'ycm-core/YouCompleteMe'
 Plugin 'mileszs/ack.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'w0rp/ale'
+Plugin 'dense-analysis/ale'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'prettier/vim-prettier'
 Plugin 'jparise/vim-graphql'
-Plugin 'google/yapf', { 'rtp': 'plugins/vim' }
-Bundle 'OmniSharp/omnisharp-vim'
-Plugin 'PProvost/vim-ps1'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-commentary'
 Plugin 'tonchis/vim-to-github'
-Plugin 'pangloss/vim-javascript'
 Plugin 'MaxMEllon/vim-jsx-pretty'
 Plugin 'alvan/vim-closetag'
+Plugin 'hashivim/vim-terraform'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'Quramy/tsuquyomi'
+Plugin 'pantharshit00/vim-prisma'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -52,7 +51,7 @@ set backspace=indent,eol,start
 set showbreak=...
 set linebreak nolist
 
-" Automatic line break at 100 characters in most filetypes.
+" Automatic line break at 80 characters in most filetypes.
 fun! SetTextWidth()
   " Don't set text width on markdown or html files.
   if &ft =~ 'markdown\|html'
@@ -61,10 +60,10 @@ fun! SetTextWidth()
     set colorcolumn=0
   else
     " Set text width.
-    set tw=100
+    set tw=80
 
-    " Highlight column 100 to mark max line length
-    set colorcolumn=100
+    " Highlight column 80 to mark max line length
+    set colorcolumn=80
   endif
 endfun
 
@@ -167,45 +166,60 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-" Enable JSDoc syntax highlighting for pangloss's javascript syntax plugin.
-let g:javascript_plugin_jsdoc = 1
-
-" Enable Flow syntax highlighting.
-let g:javascript_plugin_flow = 1
-
-" Get tern docs easily.
-map <leader>d :YcmCompleter GetDoc<CR>
-
 " Jump to definition, even into node_modules.
 map <leader>g :YcmCompleter GoTo<CR>
 
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_log_level = 'debug'
+let g:ycm_path_to_python_interpreter = 'python3'
+let g:ycm_tsserver_binary_path='/Users/spencerbrown/loancrate/node_modules/typescript/bin/tsserver'
+
+autocmd bufnewfile,bufread *.tsx set filetype=typescript.tsx
+autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
+
 " ALE config
 let g:ale_linters = {
-\ 'javascript': ['eslint'],
 \ 'graphql': ['prettier'],
-\ 'python': ['flake8'],
-\ 'cs': ['OmniSharp'],
-\ 'puppet': ['puppetlint']
+\ 'javascript': ['prettier'],
+\ 'typescript': ['tsserver', 'eslint'],
+\ 'typescript.tsx': ['tsserver', 'eslint'],
 \}
 
 let g:ale_fixers = {
-\ 'python': ['black'],
+\ 'javascript': ['prettier'],
+\ 'typescript': ['prettier'],
+\ 'typescript.tsx': ['prettier'],
 \}
 
-" Run `yapf` on save.
 let g:ale_fix_on_save = 1
 
 " Use project-local vim-flow
 let g:flow#flowpath = 'node_modules/.bin/flow'
 
 " Don't require the `@format` doc tag for Prettier to auto-run.
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html PrettierAsync
+" let g:prettier#autoformat = 0
+" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html PrettierAsync
 
 " closetag config
-let g:closetag_filenames = '*.html,*.js,*.jsx'
-let g:closetag_xhtml_filenames = '*.html,*.js,*.jsx'
+let g:closetag_filenames = '*.html,*.js,*.jsx,*.tsx'
+let g:closetag_xhtml_filenames = '*.html,*.js,*.jsx,*.tsx'
 let g:closetag_regions = {
-  \ 'javascript.js': 'jsxRegion',
   \ 'javascript.jsx': 'jsxRegion',
+  \ 'typescript.tsx': 'jsxRegion,tsxRegion',
   \ }
+
+" Experimental thing that YCM seems to be asking for?
+" let g:ycm_disable_signature_help = 1
+let g:ycm_server_python_interpreter = '/usr/local/bin/python3'
+
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
+
+au BufRead,BufNewFile Dockerfile* set filetype=dockerfile
+
+" Vim-ale handles TypeScript quickfix, so tell Tsuquyomi not to do it.
+let g:tsuquyomi_disable_quickfix = 1
+nnoremap <leader>d :TsuDefinition<cr>
+nnoremap <leader>D :TsuTypeDefinition<cr>
+
+:set completeopt=menu,preview

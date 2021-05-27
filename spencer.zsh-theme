@@ -9,7 +9,7 @@ SPENCER_CURRENT_USER_=" %{$fg[blue]%}[%n]%{$reset_color%}"
 SPENCER_LOCA_=" %{$fg[cyan]%}:%~\$(git_prompt_info)%{$reset_color%}"
 
 # For the git prompt, use a white @ and blue text for the branch name
-ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[white]%}♯"
+ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[magenta]%}♯"
 
 # Close it all off by resetting the color and styles.
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
