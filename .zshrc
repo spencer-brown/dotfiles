@@ -46,8 +46,8 @@ setopt menu_complete
 
 # nvm config brew brew-based installation
 export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # For pyenv
 eval "$(pyenv init -)"
@@ -56,3 +56,8 @@ eval "$(pyenv init -)"
 # this (after running all of the recommended instructions from
 # https://github.com/pyenv/pyenv/wiki#suggested-build-environment for OSX).
 export SDKROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk
+
+# Added by Windsurf
+export PATH="/Users/spencerbrown/.codeium/windsurf/bin:$PATH"
+
+alias dpr="open 'https://github.com/chestnutmortgage/chestnut/compare/production...main?expand=1&title=Deploy%20to%20production'"

@@ -27,6 +27,63 @@ Plugin 'alvan/vim-closetag'
 Plugin 'hashivim/vim-terraform'
 Plugin 'pantharshit00/vim-prisma'
 
+" ALE config
+let g:ale_linters = {
+\ 'graphql': ['prettier'],
+\ 'javascript': ['prettier'],
+\ 'typescript': ['tsserver', 'eslint'],
+\ 'typescript.tsx': ['tsserver', 'eslint'],
+\ 'prisma': ['prettier'],
+\}
+
+let g:ale_fixers = {
+\ 'javascript': ['prettier'],
+\ 'typescript': ['prettier'],
+\ 'typescript.tsx': ['prettier'],
+\ 'prisma': ['prettier'],
+\}
+
+function! FindProjectRoot(buffer) abort
+  " Look for tsconfig.app.json first (specific to Vite client packages)
+  let l:tsconfig_app = ale#path#FindNearestFile(a:buffer, 'tsconfig.app.json')
+  if !empty(l:tsconfig_app)
+    return fnamemodify(l:tsconfig_app, ':h')
+  endif
+
+  " Fallback to package.json (general monorepo package boundary)
+  let l:package_json = ale#path#FindNearestFile(a:buffer, 'package.json')
+  if !empty(l:package_json)
+    return fnamemodify(l:package_json, ':h')
+  endif
+
+  " Fallback to monorepo root if nothing else is found
+  return '/Users/spencerbrown/chestnut' " Adjust to your monorepo root
+endfunction
+
+" Tell ALE to use this function to find the project root
+let g:ale_root = {
+\ 'typescript': function('FindProjectRoot'),
+\ 'typescript.tsx': function('FindProjectRoot'),
+\}
+
+let g:ale_typescript_tsserver_executable = 'node_modules/.bin/tsserver'
+let g:ale_typescript_tsserver_use_global = 0
+
+let g:ale_completion_enabled = 1
+let g:ale_completion_tsserver_autoimport = 1
+
+let g:ale_fix_on_save = 1
+
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
+let g:ale_open_list = 0
+
+nnoremap <leader>d :ALEGoToDefinition<CR>
+nnoremap <leader>D :ALEGoToTypeDefinition<CR>
+
+let g:ale_typescript_tsserver_stderr = 'file'
+let g:ale_typescript_tsserver_trace_level = 'verbose'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -170,33 +227,11 @@ map <leader>g :YcmCompleter GoTo<CR>
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_server_log_level = 'debug'
 let g:ycm_path_to_python_interpreter = 'python3'
-let g:ycm_tsserver_binary_path='/Users/spencerbrown/loancrate/node_modules/typescript/bin/tsserver'
+let g:ycm_server_python_interpreter = '/opt/homebrew/bin/python3'
 
 autocmd bufnewfile,bufread *.tsx set filetype=typescript.tsx
 autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
-
-" ALE config
-let g:ale_linters = {
-\ 'graphql': ['prettier'],
-\ 'javascript': ['prettier'],
-\ 'typescript': ['tsserver', 'eslint'],
-\ 'typescript.tsx': ['tsserver', 'eslint'],
-\}
-
-let g:ale_fixers = {
-\ 'javascript': ['prettier'],
-\ 'typescript': ['prettier'],
-\ 'typescript.tsx': ['prettier'],
-\}
-
-let g:ale_fix_on_save = 1
-
-" Use project-local vim-flow
-let g:flow#flowpath = 'node_modules/.bin/flow'
-
-" Don't require the `@format` doc tag for Prettier to auto-run.
-" let g:prettier#autoformat = 0
-" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html PrettierAsync
+autocmd BufNewFile,BufRead *.prisma set filetype=prisma
 
 " closetag config
 let g:closetag_filenames = '*.html,*.js,*.jsx,*.tsx'
@@ -206,18 +241,9 @@ let g:closetag_regions = {
   \ 'typescript.tsx': 'jsxRegion,tsxRegion',
   \ }
 
-" Experimental thing that YCM seems to be asking for?
-" let g:ycm_disable_signature_help = 1
-let g:ycm_server_python_interpreter = '/usr/local/bin/python3'
-
 let g:terraform_align=1
 let g:terraform_fmt_on_save=1
 
 au BufRead,BufNewFile Dockerfile* set filetype=dockerfile
-
-" Vim-ale handles TypeScript quickfix, so tell Tsuquyomi not to do it.
-let g:tsuquyomi_disable_quickfix = 1
-nnoremap <leader>d :TsuDefinition<cr>
-nnoremap <leader>D :TsuTypeDefinition<cr>
 
 :set completeopt=menu,preview
