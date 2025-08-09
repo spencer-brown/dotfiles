@@ -25,8 +25,6 @@ Plugin 'tonchis/vim-to-github'
 Plugin 'MaxMEllon/vim-jsx-pretty'
 Plugin 'alvan/vim-closetag'
 Plugin 'hashivim/vim-terraform'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'Quramy/tsuquyomi'
 Plugin 'pantharshit00/vim-prisma'
 
 " All of your Plugins must be added before the following line
